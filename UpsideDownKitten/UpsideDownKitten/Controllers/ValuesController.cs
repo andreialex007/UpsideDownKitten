@@ -3,6 +3,7 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UpsideDownKitten.BL;
+using UpsideDownKitten.DL;
 using UpsideDownKitten.Utils;
 
 namespace UpsideDownKitten.Controllers
@@ -26,6 +27,21 @@ namespace UpsideDownKitten.Controllers
             var data = await client.GetCatAsync();
             data = ImagesProcessor.Rotate(data);
             return new FileContentResult(data, MediaTypeNames.Image.Jpeg);
+        }
+
+        [HttpPost]
+        [Route("CreateUser")]
+        public async Task<ActionResult> CreateUser(string email, string password, string passwordConfirmation)
+        {
+            return null;
+        }
+
+
+        [HttpPost]
+        [Route("Protected")]
+        public async Task<ActionResult> Protected(string email, string password, string passwordConfirmation)
+        {
+            return null;
         }
 
         // GET api/values/5
