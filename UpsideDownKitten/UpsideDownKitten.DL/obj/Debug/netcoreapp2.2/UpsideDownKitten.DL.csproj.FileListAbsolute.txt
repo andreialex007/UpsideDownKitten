@@ -1,0 +1,9 @@
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\bin\Debug\netcoreapp2.2\UpsideDownKitten.DL.deps.json
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\bin\Debug\netcoreapp2.2\UpsideDownKitten.DL.dll
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\bin\Debug\netcoreapp2.2\UpsideDownKitten.DL.pdb
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\obj\Debug\netcoreapp2.2\UpsideDownKitten.DL.csprojAssemblyReference.cache
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\obj\Debug\netcoreapp2.2\UpsideDownKitten.DL.csproj.CoreCompileInputs.cache
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\obj\Debug\netcoreapp2.2\UpsideDownKitten.DL.AssemblyInfoInputs.cache
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\obj\Debug\netcoreapp2.2\UpsideDownKitten.DL.AssemblyInfo.cs
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\obj\Debug\netcoreapp2.2\UpsideDownKitten.DL.dll
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.DL\obj\Debug\netcoreapp2.2\UpsideDownKitten.DL.pdb

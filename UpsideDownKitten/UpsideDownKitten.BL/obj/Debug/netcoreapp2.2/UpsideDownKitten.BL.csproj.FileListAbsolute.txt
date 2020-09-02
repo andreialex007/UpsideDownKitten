@@ -1,0 +1,8 @@
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\bin\Debug\netcoreapp2.2\UpsideDownKitten.BL.deps.json
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\bin\Debug\netcoreapp2.2\UpsideDownKitten.BL.dll
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\bin\Debug\netcoreapp2.2\UpsideDownKitten.BL.pdb
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\obj\Debug\netcoreapp2.2\UpsideDownKitten.BL.csproj.CoreCompileInputs.cache
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\obj\Debug\netcoreapp2.2\UpsideDownKitten.BL.AssemblyInfoInputs.cache
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\obj\Debug\netcoreapp2.2\UpsideDownKitten.BL.AssemblyInfo.cs
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\obj\Debug\netcoreapp2.2\UpsideDownKitten.BL.dll
+C:\UsideDownKitten\UpsideDownKitten\UpsideDownKitten\UpsideDownKitten.BL\obj\Debug\netcoreapp2.2\UpsideDownKitten.BL.pdb

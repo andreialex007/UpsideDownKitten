@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpsideDownKitten", "UpsideDownKitten\UpsideDownKitten.csproj", "{97628918-BE69-4D33-A120-D6EF3B68DA66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpsideDownKitten", "UpsideDownKitten\UpsideDownKitten.csproj", "{97628918-BE69-4D33-A120-D6EF3B68DA66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpsideDownKitten.BL", "UpsideDownKitten.BL\UpsideDownKitten.BL.csproj", "{4254AC90-B437-4404-8D61-15E63C2201EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpsideDownKitten.DL", "UpsideDownKitten.DL\UpsideDownKitten.DL.csproj", "{F6178064-7516-496F-8768-D73190E9549E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpsideDownKitten.Utils", "UpsideDownKitten.Utils\UpsideDownKitten.Utils.csproj", "{3EF0438D-A27C-4D66-9263-45CC6B57E40B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{97628918-BE69-4D33-A120-D6EF3B68DA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97628918-BE69-4D33-A120-D6EF3B68DA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97628918-BE69-4D33-A120-D6EF3B68DA66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4254AC90-B437-4404-8D61-15E63C2201EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4254AC90-B437-4404-8D61-15E63C2201EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4254AC90-B437-4404-8D61-15E63C2201EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4254AC90-B437-4404-8D61-15E63C2201EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6178064-7516-496F-8768-D73190E9549E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6178064-7516-496F-8768-D73190E9549E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6178064-7516-496F-8768-D73190E9549E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6178064-7516-496F-8768-D73190E9549E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EF0438D-A27C-4D66-9263-45CC6B57E40B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF0438D-A27C-4D66-9263-45CC6B57E40B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EF0438D-A27C-4D66-9263-45CC6B57E40B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EF0438D-A27C-4D66-9263-45CC6B57E40B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

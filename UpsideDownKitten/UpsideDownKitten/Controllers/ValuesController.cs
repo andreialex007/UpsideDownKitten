@@ -1,5 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Net.Mime;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using UpsideDownKitten.BL;
+using UpsideDownKitten.Utils;
 
 namespace UpsideDownKitten.Controllers
 {
@@ -12,6 +16,16 @@ namespace UpsideDownKitten.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
+        }
+
+        [HttpGet]
+        [Route("GetUpsideDownCat")]
+        public async Task<ActionResult> GetUpsideDownCat()
+        {
+            var client = new CatsClient();
+            var data = await client.GetCatAsync();
+            data = ImagesProcessor.Rotate(data);
+            return new FileContentResult(data, MediaTypeNames.Image.Jpeg);
         }
 
         // GET api/values/5
@@ -39,4 +53,5 @@ namespace UpsideDownKitten.Controllers
         {
         }
     }
+
 }
