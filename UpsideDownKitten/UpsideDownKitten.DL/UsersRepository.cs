@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace UpsideDownKitten.DL
 {
-    public class UsersRepository
+    public interface IUsersRepository
+    {
+        void Create(string email, string password);
+        User Get(string email);
+        User Get(string email, string password);
+    }
+
+    public class UsersRepository : IUsersRepository
     {
         private static readonly List<User> _users = new List<User>
         {
@@ -17,12 +22,7 @@ namespace UpsideDownKitten.DL
             }
         };
 
-        public UsersRepository()
-        {
-            
-        }
-
-        public void CreateUser(string email, string password)
+        public void Create(string email, string password)
         {
             var id = (_users.OrderByDescending(x => x.Id).FirstOrDefault()?.Id ?? 0);
             _users.Add(new User
@@ -33,16 +33,11 @@ namespace UpsideDownKitten.DL
             });
         }
 
-        public bool Login(string email, string password)
-        {
-            return _users.Any(x=>x.Email == email && x.Password == password);
-        }
-
-        public User GetUserInfo(string email)
+        public User Get(string email)
         {
             return _users.SingleOrDefault(x => x.Email == email);
         }
-        public User GetUserInfo(string email, string password)
+        public User Get(string email, string password)
         {
             return _users.SingleOrDefault(x => x.Email == email && x.Password == password);
         }

@@ -17,6 +17,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using UpsideDownKitten.BL;
+using UpsideDownKitten.DL;
 
 namespace UpsideDownKitten
 {
@@ -32,6 +34,13 @@ namespace UpsideDownKitten
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
+            services.AddTransient<ICatsService, CatsService>();
+            services.AddTransient<ICatsClient, CatsClient>();
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Register the Swagger generator, defining 1 or more Swagger documents

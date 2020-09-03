@@ -16,6 +16,13 @@ namespace UpsideDownKitten.Controllers
     [ApiController]
     public class CatsController : ControllerBase
     {
+        private ICatsService _catsService;
+
+        public CatsController(ICatsService catsService)
+        {
+            _catsService = catsService;
+        }
+
         // GET api/values
         /// <summary>
         /// get items
@@ -31,10 +38,24 @@ namespace UpsideDownKitten.Controllers
         [Route("UpsideDown")]
         public async Task<ActionResult> UpsideDown()
         {
-            var client = new CatsClient();
-            var data = await client.GetCatAsync();
-            data = ImagesProcessor.Rotate(data);
-            return new FileContentResult(data, MediaTypeNames.Image.Jpeg);
+            var result = await _catsService.GetRotated();
+            return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
+        }
+
+        [HttpGet]
+        [Route("BlackWhite")]
+        public async Task<ActionResult> BlackWhite()
+        {
+            var result = await _catsService.GetBlackWhite();
+            return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
+        }
+
+        [HttpGet]
+        [Route("Blurred")]
+        public async Task<ActionResult> Blurred()
+        {
+            var result = await _catsService.GetBlurred();
+            return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
 
         [HttpPost]
@@ -42,7 +63,7 @@ namespace UpsideDownKitten.Controllers
         public async Task<ActionResult> CreateUser(string email, string password, string passwordConfirmation)
         {
             var dao = new UsersRepository();
-            dao.CreateUser(email,password);
+            dao.Create(email,password);
             return this.Ok();
         }
 
@@ -61,7 +82,7 @@ namespace UpsideDownKitten.Controllers
         public async Task<User> GetUserInfo(string email)
         {
             var dao = new UsersRepository();
-            var userInfo = dao.GetUserInfo(email);
+            var userInfo = dao.Get(email);
             return userInfo;
         }
 
@@ -122,7 +143,7 @@ namespace UpsideDownKitten.Controllers
         private ClaimsIdentity GetIdentity(string username, string password)
         {
             var usersDao = new UsersRepository();
-            var userInfo = usersDao.GetUserInfo(username, password);
+            var userInfo = usersDao.Get(username, password);
 
             if (userInfo != null)
             {

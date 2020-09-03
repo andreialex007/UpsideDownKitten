@@ -3,7 +3,12 @@ using System.Threading.Tasks;
 
 namespace UpsideDownKitten.BL
 {
-    public class CatsClient
+    public interface ICatsClient
+    {
+        Task<byte[]> GetCatAsync();
+    }
+
+    public class CatsClient : ICatsClient
     {
         public async Task<byte[]> GetCatAsync()
         {

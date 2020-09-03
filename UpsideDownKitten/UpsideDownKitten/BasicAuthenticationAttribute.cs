@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Server.HttpSys;
-using Microsoft.Extensions.DependencyInjection;
-using UpsideDownKitten.DL;
+using UpsideDownKitten.BL;
 
 namespace UpsideDownKitten
 {
     public class BasicAuthFilter : IAuthorizationFilter
     {
         private readonly string _realm;
+        private IUsersService _usersService;
 
-        public BasicAuthFilter(string realm)
+        public BasicAuthFilter(string realm, IUsersService usersService)
         {
             _realm = realm;
+            _usersService = usersService;
             if (string.IsNullOrWhiteSpace(_realm))
             {
                 throw new ArgumentNullException(nameof(realm), @"Please provide a non-empty realm value.");
@@ -58,8 +56,7 @@ namespace UpsideDownKitten
 
         public bool IsAuthorized(AuthorizationFilterContext context, string username, string password)
         {
-            var usersDao = new UsersRepository();
-            return usersDao.Login(username, password);
+            return _usersService.HasUser(username, password);
         }
 
         private void ReturnUnauthorizedResult(AuthorizationFilterContext context)
