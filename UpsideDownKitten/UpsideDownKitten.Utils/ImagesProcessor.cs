@@ -11,6 +11,8 @@ namespace UpsideDownKitten.Utils
             using (var image = Image.Load(data, out var imageFormat))
             {
                 image.Mutate(x=>x.RotateFlip(RotateMode.Rotate180,FlipMode.None));
+               // image.Mutate(x=>x.BlackWhite());
+                image.Mutate(x=>x.BokehBlur());
                 using (var ms = new MemoryStream())
                 {
                     image.Save(ms, imageFormat);

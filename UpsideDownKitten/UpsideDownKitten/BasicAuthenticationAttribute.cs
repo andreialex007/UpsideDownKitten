@@ -58,7 +58,7 @@ namespace UpsideDownKitten
 
         public bool IsAuthorized(AuthorizationFilterContext context, string username, string password)
         {
-            var usersDao = new UsersDao();
+            var usersDao = new UsersRepository();
             return usersDao.Login(username, password);
         }
 

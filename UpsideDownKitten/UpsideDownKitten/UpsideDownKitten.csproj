@@ -8,6 +8,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +19,11 @@
   <ItemGroup>
     <ProjectReference Include="..\UpsideDownKitten.BL\UpsideDownKitten.BL.csproj" />
     <ProjectReference Include="..\UpsideDownKitten.DL\UpsideDownKitten.DL.csproj" />
-    <ProjectReference Include="..\UpsideDownKitten.Utils\UpsideDownKitten.Utils.csproj" />
   </ItemGroup>
+  
+  <PropertyGroup>
+  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  <NoWarn>$(NoWarn);1591</NoWarn>
+</PropertyGroup>
 
 </Project>
