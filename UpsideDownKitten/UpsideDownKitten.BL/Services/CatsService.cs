@@ -13,21 +13,21 @@ namespace UpsideDownKitten.BL.Services
             _catsClient = catsClient;
         }
 
-        public async Task<byte[]> GetRotated()
+        public async Task<byte[]> GetRotatedAsync()
         {
-            var result = await _catsClient.GetCatAsync().ConfigureAwait(false);
+            var result = await _catsClient.GetCatAsync();
             return ImagesProcessor.Rotate(result);
         }
 
-        public async Task<byte[]> GetBlurred()
+        public async Task<byte[]> GetBlurredAsync()
         {
-            var result = await _catsClient.GetCatAsync().ConfigureAwait(false);
+            var result = await _catsClient.GetCatAsync();
             return ImagesProcessor.Blur(result);
         }
 
-        public async Task<byte[]> GetBlackWhite()
+        public async Task<byte[]> GetBlackWhiteAsync()
         {
-            var result = await _catsClient.GetCatAsync().ConfigureAwait(false);
+            var result = await _catsClient.GetCatAsync();
             return ImagesProcessor.BlackWhite(result);
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using UpsideDownKitten.BL.Services;
@@ -28,6 +29,7 @@ namespace UpsideDownKitten.Controllers
         /// <param name="password">correct password</param>
         /// <returns>Token with username</returns>
         [HttpGet]
+        [AllowAnonymous]
         public object Get(string email, string password)
         {
             var identity = GetIdentity(email, password);

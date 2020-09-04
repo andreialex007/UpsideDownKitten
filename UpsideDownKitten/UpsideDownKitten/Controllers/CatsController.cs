@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UpsideDownKitten.BL.Services;
-using UpsideDownKitten.Common;
 
 namespace UpsideDownKitten.Controllers
 {
@@ -17,7 +16,6 @@ namespace UpsideDownKitten.Controllers
 
         public CatsController(ICatsService catsService)
         {
-            /* [Authorize] [BasicAuth] */
             _catsService = catsService;
         }
 
@@ -27,10 +25,9 @@ namespace UpsideDownKitten.Controllers
         /// <returns>UpsideDown cat</returns>
         [HttpGet]
         [Route("UpsideDown")]
-        [BasicAuth]
         public async Task<ActionResult> UpsideDown()
         {
-            var result = await _catsService.GetRotated();
+            var result =  await _catsService.GetRotatedAsync();
             return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
 
@@ -40,10 +37,9 @@ namespace UpsideDownKitten.Controllers
         /// <returns>Black white cat</returns>
         [HttpGet]
         [Route("BlackWhite")]
-        [BasicAuth]
         public async Task<ActionResult> BlackWhite()
         {
-            var result = await _catsService.GetBlackWhite();
+            var result = await _catsService.GetBlackWhiteAsync();
             return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
 
@@ -53,10 +49,9 @@ namespace UpsideDownKitten.Controllers
         /// <returns>Blured cat</returns>
         [HttpGet]
         [Route("Blurred")]
-        [BasicAuth]
         public async Task<ActionResult> Blurred()
         {
-            var result = await _catsService.GetBlurred();
+            var result = await _catsService.GetBlurredAsync();
             return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
 

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -31,36 +33,51 @@ namespace UpsideDownKitten
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var isBasicAuth = Configuration.GetValue<bool>("AppSettings:IsBasicAuth");
+
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IUsersRepository, UsersRepository>();
             services.AddTransient<ICatsService, CatsService>();
             services.AddTransient<ICatsClient, CatsClient>();
 
+            var policy = new AuthorizationPolicyBuilder()
+                .RequireAuthenticatedUser()
+                .Build();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>
+                {
+                    options.Filters.Add(isBasicAuth ? (IFilterMetadata) new BasicAuthAttribute():  new AuthorizeFilter(policy));
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "UpsideDown Kitten API",
+                    Title = "Kitten API",
                     Description = "Simple project developed for rotating cat images"
                 });
+
+                c.DocumentFilter<HideInDocsFilter>();
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
 
-
-                // AddBasic(c);
-                AddBarier(c);
-
+                if (isBasicAuth)
+                {
+                    AddBasic(c);
+                }
+                else
+                {
+                    AddBarier(c);
+                }
             });
 
-
-            AddAuthServices(services);
+            if (!isBasicAuth)
+                AddAuthServices(services);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -74,7 +91,7 @@ namespace UpsideDownKitten
             app.UseSwaggerUI(c =>
             {
                 c.DefaultModelsExpandDepth(-1);
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "UpsideDown Kitten API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Kitten API V1");
             });
 
             app.UseAuthentication();
@@ -118,6 +135,7 @@ namespace UpsideDownKitten
             });
 
             c.OperationFilter<AddAuthHeaderOperationFilter>();
+            c.DocumentFilter<HideInDocsFilter>();
         }
 
         private static void AddAuthServices(IServiceCollection services)
@@ -139,41 +157,6 @@ namespace UpsideDownKitten
                         ValidateIssuerSigningKey = true,
                     };
                 });
-        }
-    }
-
-    public class AddAuthHeaderOperationFilter : IOperationFilter
-    {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
-        {
-            var actionMetadata = context.ApiDescription.ActionDescriptor.EndpointMetadata;
-            var isBasicAuth = actionMetadata.Any(x => x is BasicAuthAttribute);
-            if (!isBasicAuth)
-            {
-                return;
-            }
-            if (operation.Parameters == null)
-                operation.Parameters = new List<OpenApiParameter>();
-
-            operation.Security = new List<OpenApiSecurityRequirement>();
-
-            //Add JWT bearer type
-            operation.Security.Add(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                // Definition name. 
-                                // Should exactly match the one given in the service configuration
-                                Id = "Bearer"
-                            }
-                        }, new string[0]
-                    }
-                }
-            );
         }
     }
 }
