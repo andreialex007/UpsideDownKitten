@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UpsideDownKitten.BL.Services;
+using UpsideDownKitten.Common;
 
 namespace UpsideDownKitten.Controllers
 {
@@ -26,6 +27,7 @@ namespace UpsideDownKitten.Controllers
         /// <returns>UpsideDown cat</returns>
         [HttpGet]
         [Route("UpsideDown")]
+        [BasicAuth]
         public async Task<ActionResult> UpsideDown()
         {
             var result = await _catsService.GetRotated();
@@ -38,6 +40,7 @@ namespace UpsideDownKitten.Controllers
         /// <returns>Black white cat</returns>
         [HttpGet]
         [Route("BlackWhite")]
+        [BasicAuth]
         public async Task<ActionResult> BlackWhite()
         {
             var result = await _catsService.GetBlackWhite();
@@ -50,6 +53,7 @@ namespace UpsideDownKitten.Controllers
         /// <returns>Blured cat</returns>
         [HttpGet]
         [Route("Blurred")]
+        [BasicAuth]
         public async Task<ActionResult> Blurred()
         {
             var result = await _catsService.GetBlurred();

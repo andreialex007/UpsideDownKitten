@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Swagger;
 using UpsideDownKitten.BL.Models;
 using UpsideDownKitten.BL.Services;
+using UpsideDownKitten.Common;
 
 namespace UpsideDownKitten.Controllers
 {
@@ -23,6 +25,7 @@ namespace UpsideDownKitten.Controllers
         /// <returns>Ok result will be returned upon successfull execution</returns>
         [HttpPost]
         [Route("Create")]
+        [BasicAuth]
         public ActionResult Create(string email, string password)
         {
             _usersService.Create(email,password);
@@ -36,6 +39,7 @@ namespace UpsideDownKitten.Controllers
         /// <returns>User with fields</returns>
         [HttpGet]
         [Route("Get")]
+        [BasicAuth]
         public UserDto Get(string email)
         {
             var user = _usersService.Get(email);

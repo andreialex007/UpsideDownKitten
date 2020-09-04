@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +31,7 @@ namespace UpsideDownKitten
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IUsersRepository, UsersRepository>();
             services.AddTransient<ICatsService, CatsService>();
@@ -115,20 +117,7 @@ namespace UpsideDownKitten
                 Description = "Please insert JWT token into field"
             });
 
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    new string[] { }
-                }
-            });
+            c.OperationFilter<AddAuthHeaderOperationFilter>();
         }
 
         private static void AddAuthServices(IServiceCollection services)
@@ -150,6 +139,41 @@ namespace UpsideDownKitten
                         ValidateIssuerSigningKey = true,
                     };
                 });
+        }
+    }
+
+    public class AddAuthHeaderOperationFilter : IOperationFilter
+    {
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
+        {
+            var actionMetadata = context.ApiDescription.ActionDescriptor.EndpointMetadata;
+            var isBasicAuth = actionMetadata.Any(x => x is BasicAuthAttribute);
+            if (!isBasicAuth)
+            {
+                return;
+            }
+            if (operation.Parameters == null)
+                operation.Parameters = new List<OpenApiParameter>();
+
+            operation.Security = new List<OpenApiSecurityRequirement>();
+
+            //Add JWT bearer type
+            operation.Security.Add(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                // Definition name. 
+                                // Should exactly match the one given in the service configuration
+                                Id = "Bearer"
+                            }
+                        }, new string[0]
+                    }
+                }
+            );
         }
     }
 }
