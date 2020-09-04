@@ -5,13 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Server.HttpSys;
 using UpsideDownKitten.BL;
+using UpsideDownKitten.BL.Services;
 
 namespace UpsideDownKitten
 {
     public class BasicAuthFilter : IAuthorizationFilter
     {
         private readonly string _realm;
-        private IUsersService _usersService;
+        private readonly IUsersService _usersService;
 
         public BasicAuthFilter(string realm, IUsersService usersService)
         {
@@ -61,18 +62,8 @@ namespace UpsideDownKitten
 
         private void ReturnUnauthorizedResult(AuthorizationFilterContext context)
         {
-            // Return 401 and a basic authentication challenge (causes browser to show login dialog)
             context.HttpContext.Response.Headers["WWW-Authenticate"] = $"Basic realm=\"{_realm}\"";
             context.Result = new UnauthorizedResult();
-        }
-    }
-
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class BasicAuthAttribute : TypeFilterAttribute
-    {
-        public BasicAuthAttribute(string realm = @"Realm") : base(typeof(BasicAuthFilter))
-        {
-            Arguments = new object[] { realm };
         }
     }
 }

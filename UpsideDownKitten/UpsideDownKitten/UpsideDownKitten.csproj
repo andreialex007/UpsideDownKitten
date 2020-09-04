@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\_Base\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\UpsideDownKitten.BL\UpsideDownKitten.BL.csproj" />
     <ProjectReference Include="..\UpsideDownKitten.DL\UpsideDownKitten.DL.csproj" />
   </ItemGroup>

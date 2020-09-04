@@ -1,15 +1,8 @@
-﻿using UpsideDownKitten.DL;
+﻿using UpsideDownKitten.BL.Models;
+using UpsideDownKitten.DL;
 
-namespace UpsideDownKitten.BL
+namespace UpsideDownKitten.BL.Services
 {
-    public interface IUsersService
-    {
-        void Create(string email, string password);
-        bool HasUser(string email, string password);
-        UserDto Get(string email);
-        UserDto Get(string email, string password);
-    }
-
     public class UsersService : IUsersService
     {
         private readonly IUsersRepository _usersRepository;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UpsideDownKitten.BL
+﻿namespace UpsideDownKitten.BL.Models
 {
     public class UserDto
     {

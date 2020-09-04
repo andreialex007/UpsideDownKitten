@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UpsideDownKitten.BL;
+using UpsideDownKitten.BL.Models;
+using UpsideDownKitten.BL.Services;
 
 namespace UpsideDownKitten.Controllers
 {
@@ -14,6 +15,12 @@ namespace UpsideDownKitten.Controllers
             _usersService = usersService;
         }
 
+        /// <summary>
+        /// Creates user with specified email and password
+        /// </summary>
+        /// <param name="email">Valid email</param>
+        /// <param name="password">Any not empty password</param>
+        /// <returns>Ok result will be returned upon successfull execution</returns>
         [HttpPost]
         [Route("Create")]
         public ActionResult Create(string email, string password)
@@ -22,6 +29,11 @@ namespace UpsideDownKitten.Controllers
             return this.Ok();
         }
 
+        /// <summary>
+        /// Returning user with all necessary fields
+        /// </summary>
+        /// <param name="email">Valid email</param>
+        /// <returns>User with fields</returns>
         [HttpGet]
         [Route("Get")]
         public UserDto Get(string email)

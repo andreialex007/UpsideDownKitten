@@ -1,14 +1,9 @@
 ﻿using System.Threading.Tasks;
+using UpsideDownKitten.BL.Clients;
+using UpsideDownKitten.BL.Utils;
 
-namespace UpsideDownKitten.BL
+namespace UpsideDownKitten.BL.Services
 {
-    public interface ICatsService
-    {
-        Task<byte[]> GetRotated();
-        Task<byte[]> GetBlurred();
-        Task<byte[]> GetBlackWhite();
-    }
-
     public class CatsService : ICatsService
     {
         private readonly ICatsClient _catsClient;

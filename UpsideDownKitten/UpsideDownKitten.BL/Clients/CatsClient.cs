@@ -1,13 +1,8 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace UpsideDownKitten.BL
+namespace UpsideDownKitten.BL.Clients
 {
-    public interface ICatsClient
-    {
-        Task<byte[]> GetCatAsync();
-    }
-
     public class CatsClient : ICatsClient
     {
         public async Task<byte[]> GetCatAsync()
