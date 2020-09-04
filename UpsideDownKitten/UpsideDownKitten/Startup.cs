@@ -11,9 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using UpsideDownKitten.BL;
 using UpsideDownKitten.BL.Clients;
 using UpsideDownKitten.BL.Services;
+using UpsideDownKitten.Common;
 using UpsideDownKitten.DL;
 
 namespace UpsideDownKitten

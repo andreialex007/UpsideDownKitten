@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace UpsideDownKitten
+namespace UpsideDownKitten.Common
 {
     public static class AuthOptions
     {
