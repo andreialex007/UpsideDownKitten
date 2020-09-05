@@ -27,7 +27,7 @@ namespace UpsideDownKitten.Controllers
         [Route("UpsideDown")]
         public async Task<ActionResult> UpsideDown()
         {
-            var result =  await _catsService.GetRotatedAsync();
+            var result =  await _catsService.GetRotatedAsync().ConfigureAwait(false);
             return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
 
@@ -39,7 +39,7 @@ namespace UpsideDownKitten.Controllers
         [Route("BlackWhite")]
         public async Task<ActionResult> BlackWhite()
         {
-            var result = await _catsService.GetBlackWhiteAsync();
+            var result = await _catsService.GetBlackWhiteAsync().ConfigureAwait(false);
             return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
 
@@ -51,7 +51,7 @@ namespace UpsideDownKitten.Controllers
         [Route("Blurred")]
         public async Task<ActionResult> Blurred()
         {
-            var result = await _catsService.GetBlurredAsync();
+            var result = await _catsService.GetBlurredAsync().ConfigureAwait(false);
             return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
 

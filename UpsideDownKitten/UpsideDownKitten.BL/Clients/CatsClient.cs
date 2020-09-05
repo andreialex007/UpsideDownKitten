@@ -19,8 +19,8 @@ namespace UpsideDownKitten.BL.Clients
             {
                 using (var requestMessage = new HttpRequestMessage(HttpMethod.Get, $"{_serviceUrl}/cat"))
                 {
-                    var result = await client.SendAsync(requestMessage);
-                    return await result.Content.ReadAsByteArrayAsync();
+                    var result = await client.SendAsync(requestMessage).ConfigureAwait(false);
+                    return await result.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
                 }
             }
         }
