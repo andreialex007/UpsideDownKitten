@@ -1,4 +1,6 @@
-﻿using UpsideDownKitten.BL.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using UpsideDownKitten.BL.Models;
+using UpsideDownKitten.BL.Utils;
 using UpsideDownKitten.DL;
 
 namespace UpsideDownKitten.BL.Services
@@ -25,12 +27,14 @@ namespace UpsideDownKitten.BL.Services
 
         public UserDto Get(string email)
         {
+            if(!new EmailAddressAttribute().IsValid(email))
+                throw new WebApiException("You have to provide valid email");
+
             var user = _usersRepository.Get(email);
             return new UserDto
             {
                 Id = user.Id,
-                Email = user.Email,
-                Password = user.Password,
+                Email = user.Email
             };
         }
 

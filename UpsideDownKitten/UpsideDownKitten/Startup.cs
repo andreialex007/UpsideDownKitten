@@ -48,6 +48,7 @@ namespace UpsideDownKitten
             services.AddMvc(options =>
                 {
                     options.Filters.Add(isBasicAuth ? (IFilterMetadata) new BasicAuthAttribute():  new AuthorizeFilter(policy));
+                    options.Filters.Add(new WebAppExceptionFilterAttribute());
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

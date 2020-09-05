@@ -5,7 +5,6 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using UpsideDownKitten.BL.Services;
 using UpsideDownKitten.Common;
 using UpsideDownKitten.DL;
 
@@ -15,13 +14,6 @@ namespace UpsideDownKitten.Controllers
     [ApiController]
     public class TokenController : ControllerBase
     {
-        private readonly IUsersService _usersService;
-
-        public TokenController(IUsersService usersService)
-        {
-            _usersService = usersService;
-        }
-
         /// <summary>
         /// Generates new JWT token, which have to be used in order to have access to api resources
         /// </summary>
