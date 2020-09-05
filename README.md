@@ -1,7 +1,6 @@
  **Important points:**
 
 - Default user name and password located [here](https://github.com/andreialex007/UpsideDownKitten/blob/master/UpsideDownKitten/UpsideDownKitten.DL/UsersRepository.cs#L13): 
-
 - In order to use basic authentication, it is necessary to set **IsBasicAuth : true** [here](https://github.com/andreialex007/UpsideDownKitten/blob/master/UpsideDownKitten/UpsideDownKitten/appsettings.json#L10), otherwise will be used bearer authentication
 
 **Features:**
