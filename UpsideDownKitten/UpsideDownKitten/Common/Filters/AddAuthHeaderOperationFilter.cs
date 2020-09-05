@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace UpsideDownKitten.Common
+namespace UpsideDownKitten.Common.Filters
 {
     public class AddAuthHeaderOperationFilter : IOperationFilter
     {

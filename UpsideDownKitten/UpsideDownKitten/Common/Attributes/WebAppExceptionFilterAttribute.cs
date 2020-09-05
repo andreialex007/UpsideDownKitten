@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using UpsideDownKitten.BL.Utils;
+using UpsideDownKitten.BL.Common;
+using UpsideDownKitten.Models;
 
-namespace UpsideDownKitten.Common
+namespace UpsideDownKitten.Common.Attributes
 {
     public class WebAppExceptionFilterAttribute : ExceptionFilterAttribute
     {
@@ -11,7 +11,7 @@ namespace UpsideDownKitten.Common
         {
             if (context.Exception is WebApiException exception)
             {
-                context.Result = new JsonResult(new {exception.Message});
+                context.Result = new JsonResult(new ErrorResponse {errorMessage = exception.Message});
                 context.HttpContext.Response.StatusCode = (int) System.Net.HttpStatusCode.BadRequest;
             }
             else

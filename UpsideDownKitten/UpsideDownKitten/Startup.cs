@@ -17,7 +17,10 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using UpsideDownKitten.BL.Clients;
 using UpsideDownKitten.BL.Services;
+using UpsideDownKitten.BL.Services.Interfaces;
 using UpsideDownKitten.Common;
+using UpsideDownKitten.Common.Attributes;
+using UpsideDownKitten.Common.Filters;
 using UpsideDownKitten.DL;
 
 namespace UpsideDownKitten
@@ -57,8 +60,7 @@ namespace UpsideDownKitten
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Kitten API",
-                    Description = "Simple project developed for rotating cat images"
+                    Title = "Kitten API"
                 });
 
                 c.DocumentFilter<HideInDocsFilter>();

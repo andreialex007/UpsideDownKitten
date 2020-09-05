@@ -3,7 +3,7 @@ using System.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
-namespace UpsideDownKitten.BL.Utils
+namespace UpsideDownKitten.BL.Common
 {
     public static class ImagesProcessor
     {

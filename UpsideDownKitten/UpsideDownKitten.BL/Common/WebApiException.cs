@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace UpsideDownKitten.BL.Utils
+namespace UpsideDownKitten.BL.Common
 {
     public class WebApiException : Exception
     {

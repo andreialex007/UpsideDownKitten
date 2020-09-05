@@ -3,13 +3,6 @@ using System.Linq;
 
 namespace UpsideDownKitten.DL
 {
-    public interface IUsersRepository
-    {
-        void Create(string email, string password);
-        User Get(string email);
-        User Get(string email, string password);
-    }
-
     public class UsersRepository : IUsersRepository
     {
         private static readonly List<User> _users = new List<User>
@@ -37,10 +30,15 @@ namespace UpsideDownKitten.DL
         {
             return _users.SingleOrDefault(x => x.Email == email);
         }
+
         public User Get(string email, string password)
         {
             return _users.SingleOrDefault(x => x.Email == email && x.Password == password);
         }
 
+        public List<User> All()
+        {
+            return _users;
+        }
     }
 }

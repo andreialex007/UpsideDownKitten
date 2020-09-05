@@ -4,9 +4,9 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Server.HttpSys;
-using UpsideDownKitten.BL.Services;
+using UpsideDownKitten.BL.Services.Interfaces;
 
-namespace UpsideDownKitten.Common
+namespace UpsideDownKitten.Common.Filters
 {
     public class BasicAuthFilter : IAuthorizationFilter
     {

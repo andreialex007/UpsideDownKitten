@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace UpsideDownKitten.BL.Services
+namespace UpsideDownKitten.BL.Services.Interfaces
 {
     public interface ICatsService
     {

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UpsideDownKitten.BL.Clients;
-using UpsideDownKitten.BL.Utils;
+using UpsideDownKitten.BL.Common;
+using UpsideDownKitten.BL.Services.Interfaces;
 
 namespace UpsideDownKitten.BL.Services
 {

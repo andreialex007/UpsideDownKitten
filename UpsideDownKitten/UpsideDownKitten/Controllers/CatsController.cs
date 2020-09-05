@@ -1,7 +1,7 @@
 ﻿using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using UpsideDownKitten.BL.Services;
+using UpsideDownKitten.BL.Services.Interfaces;
 
 namespace UpsideDownKitten.Controllers
 {
@@ -44,9 +44,9 @@ namespace UpsideDownKitten.Controllers
         }
 
         /// <summary>
-        /// Returning random image blured according to gaussan blur
+        /// Returning random image blurred according to Gaussian blur
         /// </summary>
-        /// <returns>Blured cat</returns>
+        /// <returns>Blurred cat</returns>
         [HttpGet]
         [Route("Blurred")]
         public async Task<ActionResult> Blurred()
@@ -54,6 +54,5 @@ namespace UpsideDownKitten.Controllers
             var result = await _catsService.GetBlurredAsync().ConfigureAwait(false);
             return new FileContentResult(result, MediaTypeNames.Image.Jpeg);
         }
-
     }
 }
